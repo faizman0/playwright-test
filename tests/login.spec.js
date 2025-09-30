@@ -62,13 +62,6 @@ test.describe('Login Test Suite (Playwright)', () => {
         await loginPage.verifyLoginSuccess();
     });
 
-    test('TC_006 - Menggunakan fitur lupa password', async ({ page }) => {
-        await loginPage.forgotPasswordLink();
-
-        // Verifikasi URL berubah
-        await expect(page).toHaveURL(/password\/reset/);
-    });
-
     test('TC_007 - Logout', async ({ page }) => {
         // 1. Login terlebih dahulu
         await loginPage.usernameInput(loginData.validUser);

@@ -8,7 +8,7 @@ export class LoginPage {
     constructor(page) {
         this.page = page;
         
-        // --- Selectors ---
+        // --- Selectors ---d
         this.usernameInputSelector = 'input[name="username"]';
         this.passwordInputSelector = 'input[name="password"]';
         this.loginButtonSelector = 'button[type="submit"]';
