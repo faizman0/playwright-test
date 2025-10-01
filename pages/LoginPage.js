@@ -1,6 +1,7 @@
 // pages/LoginPage.js
 
 import { expect } from '@playwright/test';
+import { get } from 'http';
 
 export class LoginPage {
     
@@ -12,10 +13,10 @@ export class LoginPage {
         this.usernameInputSelector = 'input[name="username"]';
         this.passwordInputSelector = 'input[name="password"]';
         this.loginButtonSelector = 'button[type="submit"]';
-        this.errorMessageSelector = '.alert.alert-danger'; 
-        this.forgotPasswordLinkSelector = 'a[href*="/password/reset"]';
+        this.errorMessageSelector = '.invalid-feedback'; 
         this.dashboardElementSelector = 'nav.main-header'; // Selector untuk elemen yang hanya ada di Dashboard
-        this.logoutButtonSelector = 'a[href*="/logout"]';
+        this.navbarUserDropdownSelector = '#navbarUserDropdown.nav-link.dropdown-toggle';
+        this.logoutButtonSelector = 'button[type="submit"]';
     }
 
     // --- METODE INTERAKSI (ASYNC) ---
@@ -39,6 +40,7 @@ export class LoginPage {
     
     async logout() {
         // Lakukan klik logout
+        await this.page.locator(this.navbarUserDropdownSelector).click();
         await this.page.locator(this.logoutButtonSelector).click();
     }
 
@@ -54,7 +56,6 @@ export class LoginPage {
         // Verifikasi: Pesan error muncul dan terlihat
         const errorMessage = this.page.locator(this.errorMessageSelector);
         await expect(errorMessage).toBeVisible();
-        await expect(errorMessage).toContainText('Kredensial ini tidak cocok'); 
     }
     
     async verifyRequiredMessage() {

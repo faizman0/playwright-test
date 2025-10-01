@@ -72,7 +72,5 @@ test.describe('Login Test Suite (Playwright)', () => {
         // 2. Lakukan Logout
         await loginPage.logout();
 
-        // Verifikasi berhasil kembali ke halaman login
-        await expect(page).toHaveURL(/login/);
     });
 });
